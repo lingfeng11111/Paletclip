@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23C71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ClipboardItem" representedClassName="ClipboardItem" syncable="YES">
+        <attribute name="colorPalette" optional="YES" attributeType="Binary"/>
+        <attribute name="content" attributeType="Binary"/>
+        <attribute name="contentType" attributeType="String"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="fileExtension" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isStarred" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="lastAccessedAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="thumbnail" optional="YES" attributeType="Binary"/>
+        <attribute name="thumbnailQuality" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="folder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="items" inverseEntity="Folder"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="items" inverseEntity="Tag"/>
+    </entity>
+    <entity name="Folder" representedClassName="Folder" syncable="YES">
+        <attribute name="colorTheme" attributeType="String"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="sortOrder" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClipboardItem" inverseName="folder" inverseEntity="ClipboardItem"/>
+    </entity>
+    <entity name="Tag" representedClassName="Tag" syncable="YES">
+        <attribute name="color" attributeType="String"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClipboardItem" inverseName="tags" inverseEntity="ClipboardItem"/>
+    </entity>
+</model>
